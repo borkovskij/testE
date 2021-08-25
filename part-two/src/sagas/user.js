@@ -1,4 +1,4 @@
-import { all, call, put, select, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import {
 	FETCH_USER_PENDING,
 	FETCH_USER_SUCCESS,
