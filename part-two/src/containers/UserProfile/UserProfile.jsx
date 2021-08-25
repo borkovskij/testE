@@ -2,6 +2,7 @@ import React from 'react';
 import P from 'prop-types';
 import EditableProfile from '../../components/EditableProfile';
 import LoadingScreen from '../../components/LoadingScreen';
+import { userType } from '../../propTypes';
 
 class UserProfile extends React.Component {
 	static propTypes = {
@@ -14,13 +15,7 @@ class UserProfile extends React.Component {
 		handleSubmit: P.func.isRequired,
 		isLoading: P.bool.isRequired,
 		isDataLoaded: P.bool.isRequired,
-		user: P.shape({
-			id: P.number,
-			email: P.string,
-			first_name: P.string,
-			last_name: P.string,
-			avatar: P.string,
-		}),
+		user: userType,
 	};
 
 	componentDidMount() {

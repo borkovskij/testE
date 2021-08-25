@@ -3,6 +3,7 @@ import P from 'prop-types';
 import UsersList from '../../components/UsersList';
 import { Container } from './styled';
 import LoadingScreen from '../../components/LoadingScreen';
+import { usersType } from '../../propTypes';
 
 class UsersListContainer extends Component {
 	static propTypes = {
@@ -12,15 +13,7 @@ class UsersListContainer extends Component {
 		totalPages: P.number,
 		perPage: P.number,
 		total: P.number,
-		users: P.arrayOf(
-			P.shape({
-				id: P.number.isRequired,
-				email: P.string.isRequired,
-				first_name: P.string.isRequired,
-				last_name: P.string.isRequired,
-				avatar: P.string.isRequired,
-			})
-		),
+		users: usersType,
 		fetchUsers: P.func.isRequired,
 		clearData: P.func.isRequired,
 	};

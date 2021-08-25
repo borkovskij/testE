@@ -2,13 +2,14 @@ import React from 'react';
 import P from 'prop-types';
 import { ButtonContainer, Content, ModalContainer, Title, ModalBackground } from './styled';
 import Button from '../Button';
+import { userType } from '../../propTypes';
 
 export default class Modal extends React.Component {
 	static propTypes = {
 		onClose: P.func.isRequired,
 		openUser: P.func.isRequired,
 		active: P.bool.isRequired,
-		user: P.object,
+		user: userType,
 	};
 
 	onClose = (e) => {

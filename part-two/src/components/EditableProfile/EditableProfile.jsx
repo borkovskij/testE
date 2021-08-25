@@ -2,16 +2,11 @@ import React from 'react';
 import P from 'prop-types';
 import { Avatar, Container, NameInput, InputContainer } from './styled';
 import Button from '../Button';
+import { userType } from '../../propTypes';
 
 class EditableProfile extends React.Component {
 	static propTypes = {
-		user: P.shape({
-			id: P.number.isRequired,
-			email: P.string.isRequired,
-			first_name: P.string.isRequired,
-			last_name: P.string.isRequired,
-			avatar: P.string.isRequired,
-		}),
+		user: userType,
 		onSave: P.func.isRequired,
 	};
 

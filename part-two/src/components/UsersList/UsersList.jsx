@@ -3,6 +3,7 @@ import P from 'prop-types';
 import { Container } from './styled';
 import UserCard from '../UserCard';
 import Modal from '../Modal';
+import { usersType } from '../../propTypes';
 
 class UsersList extends Component {
 	static propTypes = {
@@ -11,15 +12,7 @@ class UsersList extends Component {
 		fetchUsers: P.func,
 		isLoading: P.bool,
 		onEditUserClick: P.func,
-		users: P.arrayOf(
-			P.shape({
-				id: P.number.isRequired,
-				email: P.string.isRequired,
-				first_name: P.string.isRequired,
-				last_name: P.string.isRequired,
-				avatar: P.string.isRequired,
-			})
-		),
+		users: usersType,
 	};
 
 	constructor(props) {

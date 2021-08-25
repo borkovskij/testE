@@ -1,4 +1,5 @@
 import P from 'prop-types';
+import { userType } from '../../propTypes';
 import { CardContainer, Avatar, DataContainer, NameContainer, Data } from './styled';
 
 const UserCard = ({ user, onClick, readOnly }) => {
@@ -21,7 +22,7 @@ const UserCard = ({ user, onClick, readOnly }) => {
 };
 
 UserCard.propTypes = {
-	user: P.object,
+	user: userType,
 	onClick: P.func,
 	readOnly: P.bool,
 };

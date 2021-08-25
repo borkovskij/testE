@@ -3,16 +3,11 @@ import P from 'prop-types';
 
 import { Container, ChangesContainer, Title, Arrow, Text } from './styled';
 import Button from '../Button';
+import { userType } from '../../propTypes';
 
 class UserChanges extends React.Component {
 	static propTypes = {
-		user: P.shape({
-			id: P.number,
-			email: P.string,
-			first_name: P.string,
-			last_name: P.string,
-			avatar: P.string,
-		}),
+		user: userType,
 		updatedUser: P.shape({
 			first_name: P.string.isRequired,
 			last_name: P.string.isRequired,
