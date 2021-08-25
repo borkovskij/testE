@@ -1,4 +1,5 @@
 import { GET_PAGINATION } from '../actions/pagination';
+import { CLEAR_DATA } from '../actions/users';
 
 const initialState = {
 	page: null,
@@ -14,6 +15,8 @@ const pagination = (state = initialState, { type, payload }) => {
 				...state,
 				...payload,
 			};
+		case CLEAR_DATA:
+			return initialState;
 		default:
 			return state;
 	}

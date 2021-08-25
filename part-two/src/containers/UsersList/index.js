@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { USERS_LIST_PENDING } from '../../actions/users';
+import { USERS_LIST_PENDING, CLEAR_DATA } from '../../actions/users';
 import UsersList from './UsersListContainer';
 
 const mapStateToProps = (state) => ({
@@ -17,6 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch({
 			type: USERS_LIST_PENDING,
 			payload: { page },
+		}),
+
+	clearData: () =>
+		dispatch({
+			type: CLEAR_DATA,
 		}),
 });
 

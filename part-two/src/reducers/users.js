@@ -1,4 +1,4 @@
-import { USERS_LIST_PENDING, USERS_LIST_SUCCESS } from '../actions/users';
+import { CLEAR_DATA, USERS_LIST_PENDING, USERS_LIST_SUCCESS } from '../actions/users';
 
 const initialState = {
 	isLoading: false,
@@ -20,6 +20,9 @@ const users = (state = initialState, { type, payload }) => {
 				isLoaded: true,
 				users: [ ...state.users, ...payload.users ],
 			};
+		case CLEAR_DATA: {
+			return initialState;
+		}
 		default:
 			return state;
 	}

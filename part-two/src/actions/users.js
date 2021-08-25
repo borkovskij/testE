@@ -1,2 +1,4 @@
 export const USERS_LIST_PENDING = 'USERS_LIST_PENDING';
 export const USERS_LIST_SUCCESS = 'USERS_LIST_SUCCESS';
+
+export const CLEAR_DATA = 'CLEAR_DATA';

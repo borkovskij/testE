@@ -22,6 +22,7 @@ class UsersListContainer extends Component {
 			})
 		),
 		fetchUsers: P.func.isRequired,
+		clearData: P.func.isRequired,
 	};
 
 	static defaultProps = {
@@ -30,6 +31,10 @@ class UsersListContainer extends Component {
 
 	componentDidMount() {
 		this.props.fetchUsers();
+	}
+
+	componentWillUnmount() {
+		this.props.clearData();
 	}
 
 	onPageChange = (page) => this.props.fetchUsers(page);

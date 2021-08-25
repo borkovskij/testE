@@ -9,23 +9,16 @@ import {
 import { getUserData, updateUserData } from '../services/user';
 import { history } from '../store';
 
-const isUsersListLoaded = (state) => state.users.isLoaded;
-
 function* getUser({ payload }) {
-	const isLoadedUsersList = yield select(isUsersListLoaded);
-	if (isLoadedUsersList) {
-		const { userId } = payload;
-		try {
-			const data = yield call(getUserData, userId);
-			yield put({
-				type: FETCH_USER_SUCCESS,
-				payload: { user: data.data },
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	} else {
-		yield call(navigateHome);
+	const { userId } = payload;
+	try {
+		const data = yield call(getUserData, userId);
+		yield put({
+			type: FETCH_USER_SUCCESS,
+			payload: { user: data.data },
+		});
+	} catch (e) {
+		console.log(e);
 	}
 }
 
