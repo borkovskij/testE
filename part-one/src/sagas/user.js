@@ -8,6 +8,7 @@ import {
 	FETCH_USER_FAIL,
 	UPDATE_USER_FAIL,
 } from '../actions/user';
+import { ROUTES } from '../constants';
 import { getUserData, updateUserData } from '../services/user';
 import { history } from '../store';
 
@@ -43,7 +44,7 @@ function* updateUser({ payload }) {
 				userData: data,
 			},
 		});
-		yield call(history.push, '/confirmation');
+		yield call(history.push, ROUTES.CONFIRMATION_ROUTE);
 	} catch (e) {
 		yield put({
 			type: UPDATE_USER_FAIL,
@@ -52,7 +53,7 @@ function* updateUser({ payload }) {
 }
 
 function* navigateHome() {
-	yield call(history.push, '/users');
+	yield call(history.push, ROUTES.USERS_ROUTE);
 }
 
 function userSaga() {

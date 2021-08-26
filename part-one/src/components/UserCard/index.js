@@ -1,8 +1,9 @@
+import { ROUTES } from '../../constants';
 import { userType } from '../../propTypes';
 import { CardContainer, Avatar, DataContainer, NameContainer, Data, Link } from './styled';
 
 const UserCard = ({ user }) => {
-	const getUserLink = () => `user/${user.id}`;
+	const getUserLink = () => `${ROUTES.USER_ROUTE}/${user.id}`;
 	return (
 		<Link to={getUserLink()}>
 			<CardContainer id={user.id}>

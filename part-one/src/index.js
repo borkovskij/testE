@@ -8,6 +8,7 @@ import UserProfile from './containers/UserProfile';
 import UserEditConfirmation from './containers/UserEditConfirmation';
 import configureStore, { history } from './store';
 import GlobalStyle from './globalStyles';
+import { ROUTES } from './constants';
 
 const store = configureStore();
 
@@ -17,11 +18,11 @@ ReactDOM.render(
 		<ConnectedRouter history={history}>
 			<Switch>
 				<Route exact path="/">
-					<Redirect to="/users" />
+					<Redirect to={ROUTES.USERS_ROUTE} />
 				</Route>
-				<Route path="/users" component={UsersList} />
-				<Route path={'/user/:userId'} component={UserProfile} />
-				<Route path={'/confirmation'} component={UserEditConfirmation} />
+				<Route path={ROUTES.USERS_ROUTE} component={UsersList} />
+				<Route path={`${ROUTES.USER_ROUTE}/:userId`} component={UserProfile} />
+				<Route path={ROUTES.CONFIRMATION_ROUTE} component={UserEditConfirmation} />
 			</Switch>
 		</ConnectedRouter>
 	</Provider>,
