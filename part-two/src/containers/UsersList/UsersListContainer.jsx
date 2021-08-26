@@ -22,12 +22,8 @@ class UsersListContainer extends Component {
 		clearData: P.func.isRequired,
 	};
 
-	static defaultProps = {
-		page: 1,
-	};
-
 	componentDidMount() {
-		this.props.fetchUsers();
+		this.props.fetchUsers(this.props.pagination.page);
 	}
 
 	componentWillUnmount() {

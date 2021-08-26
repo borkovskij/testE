@@ -10,6 +10,7 @@ import {
 } from '../actions/user';
 import { getUserData, updateUserData } from '../services/user';
 import { history } from '../store';
+import { ROUTES } from '../constants';
 
 function* getUser({ payload }) {
 	const { userId } = payload;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import P from 'prop-types';
-import { Container } from './styled';
+import { Container, NotFound } from './styled';
 import UserCard from '../UserCard';
 import Modal from '../Modal';
 import { usersType } from '../../propTypes';
@@ -44,12 +44,13 @@ class UsersList extends Component {
 	};
 
 	render() {
+		const { users } = this.props;
 		return (
 			<Container ref={this.scrollerRef} onScroll={this.handleScroll}>
 				{users.length ? (
-					users.map((user) => <UserCard key={user.id} user={user} />)
+					users.map((user) => <UserCard key={user.id} user={user} onClick={this.toggleModal} />)
 				) : (
-					<NotFound>userssss not found</NotFound>
+					<NotFound>users not found</NotFound>
 				)}
 				{this.props.isLoading && <p>Loading...</p>}
 				<Modal active={this.state.active} onClose={this.toggleModal} openUser={this.handleOpenUser}>

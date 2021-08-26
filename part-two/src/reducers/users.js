@@ -1,4 +1,4 @@
-import { USERS_LIST_PENDING, USERS_LIST_SUCCESS, USERS_LIST_FAIL } from '../actions/users';
+import { USERS_LIST_PENDING, USERS_LIST_SUCCESS, USERS_LIST_FAIL, CLEAR_DATA } from '../actions/users';
 
 const initialState = {
 	isLoading: false,
@@ -24,7 +24,7 @@ const users = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				isLoading: false,
-				users: payload.users,
+				users: state.users ? [ ...state.users, ...payload.users ] : [ ...payload.users ],
 				pagination: {
 					...payload.pagination,
 				},
@@ -35,6 +35,9 @@ const users = (state = initialState, { type, payload }) => {
 				isLoading: false,
 				error: true,
 			};
+		case CLEAR_DATA: {
+			return initialState;
+		}
 		default:
 			return state;
 	}
