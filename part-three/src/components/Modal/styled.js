@@ -10,6 +10,7 @@ export const ModalBackground = styled.div`
 	justify-content: center;
 	align-items: center;
 	backdrop-filter: blur(2px);
+	transition: backdrop-filter 1.5s;
 `;
 
 export const ModalContainer = styled.div`

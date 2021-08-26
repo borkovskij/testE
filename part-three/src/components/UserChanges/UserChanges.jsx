@@ -17,7 +17,7 @@ class UserChanges extends React.Component {
 	};
 
 	componentDidMount() {
-		if (!Object.keys(this.props.user).length) {
+		if (this.props.user === null) {
 			this.props.navigateToUsersList();
 		}
 	}

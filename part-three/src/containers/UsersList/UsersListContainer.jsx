@@ -4,7 +4,7 @@ import UsersList from '../../components/UsersList';
 import { Container } from './styled';
 import LoadingScreen from '../../components/LoadingScreen';
 import { usersType } from '../../propTypes';
-import { ROUTES, STEPS } from '../../constants';
+import { ROUTES } from '../../constants';
 import Error from '../../components/Error';
 
 class UsersListContainer extends Component {
