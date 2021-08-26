@@ -33,7 +33,7 @@ class UsersListContainer extends Component {
 			return <Error />;
 		}
 
-		if (!users.length) {
+		if (users == null) {
 			return isLoading ? <LoadingScreen /> : null;
 		}
 		return (

@@ -2,7 +2,7 @@ import { USERS_LIST_PENDING, USERS_LIST_SUCCESS, USERS_LIST_FAIL } from '../acti
 
 const initialState = {
 	isLoading: false,
-	users: [],
+	users: null,
 	pagination: {
 		page: 1,
 		totalPages: null,
