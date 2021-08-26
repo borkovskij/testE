@@ -7,7 +7,6 @@ import {
 	UPDATE_USER_PENDING,
 	UPDATE_USER_SUCCESS,
 } from '../actions/user';
-import { STEPS } from '../constants';
 
 const initialState = {
 	isLoading: false,

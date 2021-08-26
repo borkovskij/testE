@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import P from 'prop-types';
-import { Avatar, Container, NameInput, InputContainer } from './styled';
+import { Avatar, Container, NameInput, InputContainer, FormContainer } from './styled';
 import Button from '../Button';
 import { userType } from '../../propTypes';
 import { STEPS } from '../../constants';
@@ -38,10 +38,10 @@ class EditableProfile extends React.Component {
 	};
 
 	onSubmit = () => {
-		const { firstName, lastName } = this.state;
+		const { first_name, last_name } = this.props.updates;
 		this.props.onSave({
-			firstName,
-			lastName,
+			firstName: first_name,
+			lastName: last_name,
 			userId: this.props.user.id,
 			updatedAt: new Date().toISOString(),
 		});
@@ -56,27 +56,29 @@ class EditableProfile extends React.Component {
 				) : (
 					<Fragment>
 						<Avatar src={user.avatar} alt={user.last_name} />
-						<Button
-							onClick={this.props.handleNavigate}
-							text={this.props.currentPage === STEPS.FIRST_NAME ? 'Go next' : 'Go prev'}
-						/>
-						<InputContainer id={UPDATE_USER_FORM}>
-							<NameInput
-								type="text"
-								value={this.props.updates[this.props.currentPage]}
-								id={this.props.currentPage}
-								onChange={this.handleChange}
-							/>
-						</InputContainer>
-						{this.props.currentPage === STEPS.LAST_NAME && (
+						<FormContainer>
 							<Button
-								type="submit"
-								form={UPDATE_USER_FORM}
-								onClick={this.onSubmit}
-								disabled={!this.hasChanges()}
-								text="Submit"
+								onClick={this.props.handleNavigate}
+								text={this.props.currentPage === STEPS.FIRST_NAME ? 'Go next' : 'Go prev'}
 							/>
-						)}
+							<InputContainer id={UPDATE_USER_FORM}>
+								<NameInput
+									type="text"
+									value={this.props.updates[this.props.currentPage]}
+									id={this.props.currentPage}
+									onChange={this.handleChange}
+								/>
+							</InputContainer>
+							{this.props.currentPage === STEPS.LAST_NAME && (
+								<Button
+									type="submit"
+									form={UPDATE_USER_FORM}
+									onClick={this.onSubmit}
+									disabled={!this.hasChanges()}
+									text="Submit"
+								/>
+							)}
+						</FormContainer>
 					</Fragment>
 				)}
 			</Container>

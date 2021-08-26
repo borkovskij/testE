@@ -21,3 +21,8 @@ export const InputContainer = styled.form`
 	display: flex;
 	flex-direction: column;
 `;
+
+export const FormContainer = styled.div`
+	display: flex;
+	margin-left: 15px;
+`;

@@ -33,7 +33,7 @@ class UsersListContainer extends Component {
 	onPageChange = (page) => this.props.fetchUsers(page);
 
 	handleNavigateToUserEdit = (id) => {
-		this.props.history.push(`${ROUTES.USER_ROUTE}/${id}/${STEPS.FIRST_NAME}`);
+		this.props.history.push(`${ROUTES.USER_ROUTE}/${id}`);
 	};
 
 	render() {
