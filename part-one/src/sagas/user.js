@@ -1,19 +1,21 @@
-import { all, call, put, select, takeEvery } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import {
 	FETCH_USER_PENDING,
 	FETCH_USER_SUCCESS,
 	NAVIGATE_HOME,
 	UPDATE_USER_PENDING,
 	UPDATE_USER_SUCCESS,
+	FETCH_USER_FAIL,
+	UPDATE_USER_FAIL,
 } from '../actions/user';
 import { getUserData, updateUserData } from '../services/user';
 import { history } from '../store';
 
-const isUsersListLoaded = (state) => state.users.isLoaded;
+const getUsersList = (state) => state.users.users;
 
 function* getUser({ payload }) {
-	const isLoadedUsersList = yield select(isUsersListLoaded);
-	if (isLoadedUsersList) {
+	const usersList = yield select(getUsersList);
+	if (usersList.length) {
 		const { userId } = payload;
 		try {
 			const data = yield call(getUserData, userId);
@@ -22,7 +24,9 @@ function* getUser({ payload }) {
 				payload: { user: data.data },
 			});
 		} catch (e) {
-			console.log(e);
+			yield put({
+				type: FETCH_USER_FAIL,
+			});
 		}
 	} else {
 		yield call(navigateHome);
@@ -41,7 +45,9 @@ function* updateUser({ payload }) {
 		});
 		yield call(history.push, '/confirmation');
 	} catch (e) {
-		console.log(e);
+		yield put({
+			type: UPDATE_USER_FAIL,
+		});
 	}
 }
 
@@ -51,9 +57,9 @@ function* navigateHome() {
 
 function userSaga() {
 	return all([
-		takeEvery(FETCH_USER_PENDING, getUser),
-		takeEvery(UPDATE_USER_PENDING, updateUser),
-		takeEvery(NAVIGATE_HOME, navigateHome),
+		takeLatest(FETCH_USER_PENDING, getUser),
+		takeLatest(UPDATE_USER_PENDING, updateUser),
+		takeLatest(NAVIGATE_HOME, navigateHome),
 	]);
 }
 

@@ -16,7 +16,7 @@ export const NameInput = styled.input`
 	padding: 5px;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
 	padding: 0 15px;
 	display: flex;
 	flex-direction: column;

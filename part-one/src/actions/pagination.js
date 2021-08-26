@@ -1,1 +1,0 @@
-export const GET_PAGINATION = 'GET_PAGINATION';

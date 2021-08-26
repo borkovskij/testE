@@ -1,4 +1,4 @@
-import { usersType } from '../../propTypes';
+import { userType } from '../../propTypes';
 import { CardContainer, Avatar, DataContainer, NameContainer, Data, Link } from './styled';
 
 const UserCard = ({ user }) => {
@@ -21,7 +21,7 @@ const UserCard = ({ user }) => {
 };
 
 UserCard.propTypes = {
-	user: usersType,
+	user: userType,
 };
 
 export default UserCard;

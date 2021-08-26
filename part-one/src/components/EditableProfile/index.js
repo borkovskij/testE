@@ -1,3 +1,1 @@
-import EditableProfile from './EditableProfile';
-
-export default EditableProfile;
+export { default } from './EditableProfile';

@@ -1,24 +1,16 @@
 import { connect } from 'react-redux';
 
 import UserProfile from './UserProfile';
-import { FETCH_USER_PENDING, UPDATE_USER_PENDING } from '../../actions/user';
+import { fetchUserData, updateUserData } from '../../actionCreators/user';
 const mapStateToProps = (state) => ({
 	user: state.user.user,
 	isLoading: state.user.isLoading,
-	isDataLoaded: state.user.isDataLoaded,
+	error: state.user.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchUserData: (userId) =>
-		dispatch({
-			type: FETCH_USER_PENDING,
-			payload: { userId },
-		}),
-	handleSubmit: (userData) =>
-		dispatch({
-			type: UPDATE_USER_PENDING,
-			payload: { userData },
-		}),
+	fetchUserData: (userId) => dispatch(fetchUserData(userId)),
+	handleSubmit: (userData) => dispatch(updateUserData(userData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

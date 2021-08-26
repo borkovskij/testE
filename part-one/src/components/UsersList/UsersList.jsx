@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
-import P from 'prop-types';
+import React from 'react';
 import { Container } from './styled';
 import UserCard from '../UserCard';
-import { userType } from '../../propTypes';
+import { usersType } from '../../propTypes';
 
-class UsersList extends Component {
-	static propTypes = {
-		users: userType,
-	};
+const UsersList = ({ users }) => (
+	<Container>
+		{users.length ? users.map((user) => <UserCard key={user.id} user={user} />) : <div>No Users Found</div>}
+	</Container>
+);
 
-	renderUsers = () => {
-		return this.props.users.map((user) => <UserCard key={user.id} user={user} />);
-	};
-	render() {
-		return <Container>{this.renderUsers()}</Container>;
-	}
-}
+UsersList.propTypes = {
+	users: usersType,
+};
 
 export default UsersList;

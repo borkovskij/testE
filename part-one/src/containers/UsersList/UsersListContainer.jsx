@@ -5,43 +5,50 @@ import { Container } from './styled';
 import LoadingScreen from '../../components/LoadingScreen';
 import Pagination from '../../components/Pagination/Pagination';
 import { usersType } from '../../propTypes';
+import Error from '../../components/Error';
 
 class UsersListContainer extends Component {
 	static propTypes = {
 		isLoading: P.bool,
-		isLoaded: P.bool,
-		page: P.number,
-		totalPages: P.number,
-		perPage: P.number,
-		total: P.number,
 		users: usersType,
 		fetchUsers: P.func.isRequired,
-	};
-
-	static defaultProps = {
-		page: 1,
+		pagination: P.shape({
+			page: P.number,
+			totalPages: P.number,
+			perPage: P.number,
+			total: P.number,
+		}),
 	};
 
 	componentDidMount() {
-		this.props.fetchUsers();
+		this.props.fetchUsers(this.props.pagination.page);
 	}
 
 	onPageChange = (page) => this.props.fetchUsers(page);
 
 	render() {
+		const { pagination, users, isLoading, error } = this.props;
+
+		if (error) {
+			return <Error />;
+		}
+
+		if (!users.length) {
+			return isLoading ? <LoadingScreen /> : null;
+		}
 		return (
 			<Container>
-				{this.props.isLoading || !this.props.isLoaded ? (
+				{isLoading ? (
 					<LoadingScreen />
 				) : (
 					<React.Fragment>
-						<UsersList users={this.props.users} />
+						<UsersList users={users} />
 						<Pagination
-							page={this.props.page}
+							page={pagination.page}
 							onPageChange={this.onPageChange}
-							itemsPerPage={this.props.perPage}
-							totalItems={this.props.total}
-							totalPages={this.props.totalPages}
+							itemsPerPage={pagination.perPage}
+							totalItems={pagination.total}
+							totalPages={pagination.totalPages}
 						/>
 					</React.Fragment>
 				)}
