@@ -1,3 +1,1 @@
-import UserChanges from './UserChanges';
-
-export default UserChanges;
+export { default } from './UserChanges';

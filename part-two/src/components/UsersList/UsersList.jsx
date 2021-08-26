@@ -43,14 +43,14 @@ class UsersList extends Component {
 		this.props.onEditUserClick(this.state.user.id);
 	};
 
-	renderUsers = () => {
-		return this.props.users.map((user) => <UserCard key={user.id} user={user} onClick={this.toggleModal} />);
-	};
-
 	render() {
 		return (
 			<Container ref={this.scrollerRef} onScroll={this.handleScroll}>
-				{this.renderUsers()}
+				{users.length ? (
+					users.map((user) => <UserCard key={user.id} user={user} />)
+				) : (
+					<NotFound>userssss not found</NotFound>
+				)}
 				{this.props.isLoading && <p>Loading...</p>}
 				<Modal active={this.state.active} onClose={this.toggleModal} openUser={this.handleOpenUser}>
 					<UserCard readOnly user={this.state.user} />

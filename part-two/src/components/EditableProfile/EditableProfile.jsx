@@ -4,6 +4,8 @@ import { Avatar, Container, NameInput, InputContainer } from './styled';
 import Button from '../Button';
 import { userType } from '../../propTypes';
 
+const UPDATE_USER_FORM = 'updateUser';
+
 class EditableProfile extends React.Component {
 	static propTypes = {
 		user: userType,
@@ -49,11 +51,17 @@ class EditableProfile extends React.Component {
 		return (
 			<Container>
 				<Avatar src={user.avatar} alt={user.last_name} />
-				<InputContainer>
+				<InputContainer id={UPDATE_USER_FORM}>
 					<NameInput type="text" value={this.state.firstName} id="firstName" onChange={this.handleChange} />
 					<NameInput type="text" value={this.state.lastName} id="lastName" onChange={this.handleChange} />
 				</InputContainer>
-				<Button onClick={this.onSubmit} disabled={!this.hasChanges()} text="Submit" />
+				<Button
+					type="submit"
+					form={UPDATE_USER_FORM}
+					onClick={this.onSubmit}
+					disabled={!this.hasChanges()}
+					text="Submit"
+				/>
 			</Container>
 		);
 	}

@@ -1,8 +1,10 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
+	FETCH_USER_FAIL,
 	FETCH_USER_PENDING,
 	FETCH_USER_SUCCESS,
 	NAVIGATE_HOME,
+	UPDATE_USER_FAIL,
 	UPDATE_USER_PENDING,
 	UPDATE_USER_SUCCESS,
 } from '../actions/user';
@@ -18,7 +20,9 @@ function* getUser({ payload }) {
 			payload: { user: data.data },
 		});
 	} catch (e) {
-		console.log(e);
+		yield put({
+			type: FETCH_USER_FAIL,
+		});
 	}
 }
 
@@ -32,21 +36,23 @@ function* updateUser({ payload }) {
 				userData: data,
 			},
 		});
-		yield call(history.push, '/confirmation');
+		yield call(history.push, ROUTES.CONFIRMATION_ROUTE);
 	} catch (e) {
-		console.log(e);
+		yield put({
+			type: UPDATE_USER_FAIL,
+		});
 	}
 }
 
 function* navigateHome() {
-	yield call(history.push, '/users');
+	yield call(history.push, ROUTES.USERS_ROUTE);
 }
 
 function userSaga() {
 	return all([
-		takeEvery(FETCH_USER_PENDING, getUser),
-		takeEvery(UPDATE_USER_PENDING, updateUser),
-		takeEvery(NAVIGATE_HOME, navigateHome),
+		takeLatest(FETCH_USER_PENDING, getUser),
+		takeLatest(UPDATE_USER_PENDING, updateUser),
+		takeLatest(NAVIGATE_HOME, navigateHome),
 	]);
 }
 

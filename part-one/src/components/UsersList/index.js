@@ -1,3 +1,1 @@
-import UsersList from "./UsersList";
-
-export default UsersList;
+export { default } from './UsersList';
